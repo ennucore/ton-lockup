@@ -1,38 +1,37 @@
 import "@stdlib/deploy";
 
-message Add {
-    amount: Int as uint32;
+message Retranslate {
+    value: Int as coins;
+    body: Cell;
+    to: Address;
+    bounce: Bool;
+    mode: Int;
 }
 
-contract SampleTactContract with Deployable {
+contract Lockup with Deployable {
 
     owner: Address;
-    counter: Int as uint32;
+    unlock_time: Int;
 
-    init(owner: Address) {
+    init(owner: Address, unlock_time: Int) {
         self.owner = owner;
-        self.counter = 0;
+        self.unlock_time = unlock_time;
     }
 
-    fun add(v: Int) {
-        
-        // Check sender
+    receive(msg: Retranslate) {
         let ctx: Context = context();
-        require(ctx.sender == self.owner, "Invalid sender");
-        
-        // Update counter
-        self.counter = (self.counter + v);
+        require(self.owner == ctx.sender, "Only the owner can send messages");
+        require(self.unlock_time < now(), "Unlock time has not come yet");
+        send(SendParameters{
+            value: msg.value,
+            bounce: msg.bounce,
+            to: msg.to,
+            body: msg.body,
+            mode: msg.mode
+        });
     }
 
-    receive(msg: Add) {
-        self.add(msg.amount);
-    }
-
-    receive("increment") {
-        self.add(1);
-    }
-
-    get fun counter(): Int {
-        return self.counter;
+    get fun unlock_time(): Int {
+        return self.unlock_time;
     }
 }

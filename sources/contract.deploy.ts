@@ -1,16 +1,17 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { Address, contractAddress } from "ton";
-import { SampleTactContract } from "./output/sample_SampleTactContract";
+import { Lockup } from "./output/lockup_Lockup";
 import { prepareTactDeployment } from "@tact-lang/deployer";
 
 (async () => {
 
     // Parameters
     let testnet = true;
-    let packageName = 'sample_SampleTactContract.pkg';
+    let packageName = 'lockup_Lockup.pkg';
     let owner = Address.parse('kQBM7QssP28PhrctDOyd47_zpFfDiQvv5V9iXizNopb1d2LB');
-    let init = await SampleTactContract.init(owner);
+    let unlock_time = 0n;
+    let init = await Lockup.init(owner, unlock_time);
 
     // Load required data
     let address = contractAddress(0, init);

@@ -1,5 +1,5 @@
 ;;
-;; Header files for SampleTactContract
+;; Header files for Lockup
 ;; NOTE: declarations are sorted for optimal order
 ;;
 
@@ -39,47 +39,47 @@ builder $DeployOk$_store(builder build_0, (int) v) inline;
 ;; $DeployOk$_store_cell
 cell $DeployOk$_store_cell((int) v) inline;
 
-;; $Add$_load
-(slice, ((int))) $Add$_load(slice sc_0) inline;
+;; $Retranslate$_load
+(slice, ((int, cell, slice, int, int))) $Retranslate$_load(slice sc_0) inline;
 
-;; $SampleTactContract$_store
-builder $SampleTactContract$_store(builder build_0, (slice, int) v) inline;
+;; $Lockup$_store
+builder $Lockup$_store(builder build_0, (slice, int) v) inline;
 
-;; $SampleTactContract$_load
-(slice, ((slice, int))) $SampleTactContract$_load(slice sc_0) inline;
+;; $Lockup$_load
+(slice, ((slice, int))) $Lockup$_load(slice sc_0) inline;
 
 ;; $StateInit$_not_null
 ((cell, cell)) $StateInit$_not_null(tuple v) inline;
 
-;; $SampleTactContract$init$_load
-(slice, ((slice))) $SampleTactContract$init$_load(slice sc_0) inline;
+;; $Lockup$init$_load
+(slice, ((slice, int))) $Lockup$init$_load(slice sc_0) inline;
 
-;; $SampleTactContract$_contract_init
-(slice, int) $SampleTactContract$_contract_init(slice $owner) impure inline_ref;
+;; $Lockup$_contract_init
+(slice, int) $Lockup$_contract_init(slice $owner, int $unlock_time) impure inline_ref;
 
-;; $SampleTactContract$_contract_load
-(slice, int) $SampleTactContract$_contract_load() impure inline_ref;
+;; $Lockup$_contract_load
+(slice, int) $Lockup$_contract_load() impure inline_ref;
 
-;; $SampleTactContract$_contract_store
-() $SampleTactContract$_contract_store((slice, int) v) impure inline;
+;; $Lockup$_contract_store
+() $Lockup$_contract_store((slice, int) v) impure inline;
 
 ;; $global_send
 () $global_send((int, slice, int, int, cell, cell, cell) $params) impure inline_ref;
 
-;; $SampleTactContract$_fun_add
-((slice, int), ()) $SampleTactContract$_fun_add((slice, int) $self, int $v) impure inline_ref;
-
-;; $SampleTactContract$_fun_counter
-((slice, int), int) $SampleTactContract$_fun_counter((slice, int) $self) impure inline_ref;
+;; $Lockup$_fun_unlock_time
+((slice, int), int) $Lockup$_fun_unlock_time((slice, int) $self) impure inline_ref;
 
 ;; $SendParameters$_constructor_bounce_to_value_mode_body_code_data
 ((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int bounce, slice to, int value, int mode, cell body, cell code, cell data) inline;
 
-;; $SampleTactContract$_fun_forward
-((slice, int), ()) $SampleTactContract$_fun_forward((slice, int) $self, slice $to, cell $body, int $bounce, tuple $init) impure inline_ref;
+;; $Lockup$_fun_forward
+((slice, int), ()) $Lockup$_fun_forward((slice, int) $self, slice $to, cell $body, int $bounce, tuple $init) impure inline_ref;
 
-;; $SampleTactContract$_fun_notify
-((slice, int), ()) $SampleTactContract$_fun_notify((slice, int) $self, cell $body) impure inline;
+;; $Lockup$_fun_notify
+((slice, int), ()) $Lockup$_fun_notify((slice, int) $self, cell $body) impure inline;
+
+;; $SendParameters$_constructor_value_bounce_to_body_mode
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_value_bounce_to_body_mode(int value, int bounce, slice to, cell body, int mode) inline;
 
 ;; $DeployOk$_constructor_queryId
 ((int)) $DeployOk$_constructor_queryId(int queryId) inline;

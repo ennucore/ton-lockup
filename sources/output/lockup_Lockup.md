@@ -1,6 +1,6 @@
 # TACT Compilation Report
-Contract: SampleTactContract
-BOC Size: 822 bytes
+Contract: Lockup
+BOC Size: 826 bytes
 
 # Types
 Total Types: 7
@@ -29,14 +29,14 @@ Signature: `DeployOk{queryId:uint64}`
 TLB: `factory_deploy#6d0ff13b queryId:uint64 cashback:address = FactoryDeploy`
 Signature: `FactoryDeploy{queryId:uint64,cashback:address}`
 
-## Add
-TLB: `add#87d43ac2 amount:uint32 = Add`
-Signature: `Add{amount:uint32}`
+## Retranslate
+TLB: `retranslate#ab55b028 value:coins body:^cell to:address bounce:bool mode:int257 = Retranslate`
+Signature: `Retranslate{value:coins,body:^cell,to:address,bounce:bool,mode:int257}`
 
 # Get Methods
 Total Get Methods: 1
 
-## counter
+## unlock_time
 
 # Error Codes
 2: Stack undeflow
@@ -63,4 +63,5 @@ Total Get Methods: 1
 135: Code of a contract was not found
 136: Invalid address
 137: Masterchain support is not enabled for this contract
-4429: Invalid sender
+41769: Only the owner can send messages
+50424: Unlock time has not come yet
